@@ -1,0 +1,15 @@
+.favorite-button{
+  width: 1.5rem;
+  height: 1.5rem;
+  background-image: url(assets/favorite-icon.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  border: none;
+  background-color: transparent;
+
+  &:hover{
+    cursor: pointer;
+    outline: none;
+  } 
+}
