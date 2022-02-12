@@ -1,0 +1,38 @@
+@import "colors";
+@import "breakpoints";
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-family: "Open Sans", sans-serif;
+}
+
+body {
+  width: 100%;
+}
+
+#main {
+  width: 100%;
+}
+
+.df {
+  width: 100%;
+  display: flex;
+  &.center-x {
+    justify-content: center;
+  }
+  &.center-y {
+    align-items: center;
+  }
+  &.space-between {
+    justify-content: space-between;
+  }
+  &.space-around {
+    justify-content: space-around;
+  }
+}
+
+.pt-2 {
+  padding-top: 2rem;
+}
