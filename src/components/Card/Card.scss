@@ -1,0 +1,63 @@
+@import "../../scss/colors";
+@import "../../scss/breakpoints.scss";
+
+.card-container {
+  width: 50%;
+  float: left;
+  height: 20rem;
+  padding: 1rem;
+}
+
+.card {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  @include xs {
+    flex-direction: column;
+    border-radius: 1rem;
+  }
+  @include lg {
+    flex-direction: row;
+    border-radius: 2rem;
+  }
+
+  overflow: hidden;
+
+  .info-container {
+    background: white;
+    @include xs {
+      width: 100%;
+      height: 50%;
+      flex-direction: column-reverse;
+      border-bottom-left-radius: 1rem;
+      border-bottom-right-radius: 1rem;
+    }
+    @include lg {
+      width: 65%;
+      height: 100%;
+      flex-direction: column;
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    padding: 1rem;
+    .header-info {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .info-row {
+      @include xs {
+        display: none;
+      }
+      @include lg {
+        display: block;
+      }
+    }
+  }
+}

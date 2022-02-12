@@ -1,0 +1,21 @@
+@import "../../scss/colors.scss";
+@import "../../scss/breakpoints.scss";
+
+.card-title {
+  @include xs {
+    font-size: 18px;
+    text-align: center;
+  }
+  @include lg {
+    font-size: 30px;
+    text-align: left;
+  }
+  font-weight: 600;
+  line-height: 46px;
+  color: $black-title;
+  padding-top: 1.3rem;
+  padding-bottom: 1.3rem;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}

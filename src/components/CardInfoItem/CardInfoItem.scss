@@ -1,0 +1,10 @@
+@import "../../scss/colors.scss";
+
+.card-info-item {
+  width: 100%;
+  margin-top: 0.7rem;
+  text-transform: capitalize;
+  p {
+    color: $body-text;
+  }
+}
