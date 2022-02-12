@@ -1,0 +1,15 @@
+@import "../../scss/breakpoints.scss";
+
+.circular-photo {
+  @include xs {
+    width: 5rem;
+    height: 5rem;
+  }
+  @include lg {
+    width: 8rem;
+    height: 8rem;
+  }
+  border-radius: 50%;
+  background-position: 50% 20%;
+  background-size: cover;
+}
