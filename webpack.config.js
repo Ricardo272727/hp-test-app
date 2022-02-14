@@ -56,6 +56,7 @@ module.exports = {
       schemas: path.resolve(__dirname, "src/schemas"),
       data: path.resolve(__dirname, "src/data"),
       assets: path.resolve(__dirname, "src/assets"),
+      providers: path.resolve(__dirname, "src/providers"),
     },
   },
   devServer: {
