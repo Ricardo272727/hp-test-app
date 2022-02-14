@@ -1,0 +1,24 @@
+.form-control-modal {
+  width: 50%;
+  position: relative;
+  float: left;
+  padding: 0.5rem !important;
+  .MuiFormLabel-root {
+    text-transform: uppercase;
+  }
+}
+
+.text-field-modal {
+  width: 100%;
+}
+
+.save-btn {
+  width: 50%;
+  margin-top: 2rem;
+}
+
+.form-file-error {
+  color: #d32f2f;
+  font-size: 0.75rem;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+}

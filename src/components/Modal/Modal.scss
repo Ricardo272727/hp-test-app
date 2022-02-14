@@ -1,0 +1,32 @@
+.modal-content{
+  width: 60%;
+  height:auto;
+  position: fixed;
+  top: 20%;
+  left: 20%;
+  background: white;
+  padding: 2rem;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 0.5rem;
+  padding-bottom: 0.8rem;
+  h6{
+    font-weight: bold;
+  }
+
+  .modal-close-btn {
+    width: 2rem;
+    height: 2rem;
+    background-image: url(assets/Dell_light.png);
+    background-position: center center;
+    border: none;
+    outline: none;
+    &:hover{
+      cursor: pointer;
+    }
+  }
+}

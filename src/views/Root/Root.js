@@ -1,13 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Root.scss";
 import items from "../../data/hp-students.json";
 import { Card } from "components/Card/Card";
 import { Button } from "components/Button/Button";
 import FixedMenu from "../../components/FixedMenu/FixedMenu";
+import { AddCharacterModal } from "../../components/AddCharacterModal";
 
 export const Root = (props) => {
+  const [openAddModal, setOpenAddModal] = useState(true);
   const onClickFavorite = () => {};
   const onClickAdd = () => {};
+  const toggleClose = () => setOpenAddModal(!openAddModal);
 
   return (
     <main className="root-app">
@@ -42,7 +45,8 @@ export const Root = (props) => {
           />
         ))}
       </div>
-      <FixedMenu onClickAdd={onClickAdd} onClickFavorite={onClickFavorite} />
+      <FixedMenu onClickAdd={toggleClose} onClickFavorite={onClickFavorite} />
+      <AddCharacterModal open={openAddModal} onClose={toggleClose} />
     </main>
   );
 };

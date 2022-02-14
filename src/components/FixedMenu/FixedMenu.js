@@ -19,7 +19,7 @@ const FixedMenu = ({
           <span>Favoritos</span>{" "}
           <Icon src="assets/favorite-icon.png" alt="Favoritos" />
         </FixedButton>
-        <FixedButton className="add-fixed-btn" onClickAdd={onClickAdd}>
+        <FixedButton className="add-fixed-btn" onClick={onClickAdd}>
           <span>Agregar</span>{" "}
           <Icon src="assets/User_fill_add.png" alt="Agregar" />
         </FixedButton>
