@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import { Modal } from "../Modal";
 import { useFormik } from "formik";
 import * as Yup from "yup";
@@ -10,8 +10,12 @@ import {
   FormControl,
   FormLabel,
 } from "@mui/material";
+import { useDispatch } from "react-redux";
+import { addCharacter } from "providers/store";
 import { Button } from "../Button";
 import "./AddCharacterModal.scss";
+import moment from "moment";
+import { createCharacter } from "requests";
 
 export const messages = {
   required: "Este campo es requerido",
@@ -22,63 +26,93 @@ export const validExtensions = ["png", "jpeg", "jpg"];
 export const validationSchema = Yup.object().shape({
   name: Yup.string().required(messages.required),
   birthday: Yup.date().required(messages.required),
-  eyeColor: Yup.string().required(messages.required),
-  hairColor: Yup.string().required(messages.required),
-  genre: Yup.string().required(messages.required),
+  eyeColour: Yup.string().required(messages.required),
+  hairColour: Yup.string().required(messages.required),
+  gender: Yup.string().required(messages.required),
   position: Yup.string().required(messages.required),
-  photo_name: Yup.string().test({
-    test: (value = "") => {
-      console.log({ value });
-      let ext = value.split(".")[1];
-      let valid = validExtensions.find((ex) => ext === ex);
-      console.log({ ext, valid })
-      return Boolean(valid);
-    },
-    message: `El tipo de archivo seleccionado no es válido, extensiones válidas: ${validExtensions.join(
-      ", "
-    )}`,
-  }),
-  photo_size: Yup.number().test({
-    test: (value) => {
-      console.log({ value });
-      let maxSize = 5000000;
-      return value < maxSize;
-    },
-    message: "El archivo seleccionado es muy grande",
+  photo: Yup.object().shape({
+    name: Yup.string().test({
+      test: (value = "") => {
+        let ext = value.split(".")[1];
+        let valid = validExtensions.find((ex) => ext === ex);
+        return Boolean(valid);
+      },
+      message: `El tipo de archivo seleccionado no es válido, extensiones válidas: ${validExtensions.join(
+        ", "
+      )}`,
+    }),
+    size: Yup.number().test({
+      test: (value) => {
+        let maxSize = 5000000;
+        return value < maxSize;
+      },
+      message: "El archivo seleccionado es muy grande",
+    }),
   }),
 });
 
 export const AddCharacterModal = ({ open = false, onClose }) => {
+  const fileRef = useRef(null);
+  const imageRef = useRef(null);
+  const dispatch = useDispatch();
   const formik = useFormik({
     initialValues: {
       name: "",
       birthday: "",
-      eyeColor: "",
-      hairColor: "",
-      genre: "",
+      eyeColour: "",
+      hairColour: "",
+      gender: "",
       position: "",
-      photo_name: "",
-      photo_size: 0,
-      photo_file: null,
+      photo: {
+        name: "",
+        size: 0,
+        file: null,
+      },
     },
     validationSchema,
     onSubmit: async (values) => {
       console.log({ values });
+      try {
+        const character = {
+          name: values.name,
+          species: "human",
+          gender: values.gender,
+          house: "Gryffindor",
+          dateOfBirth: moment(values.dateOfBirth).format("DD-MM-YYYY"),
+          yearOfBirth: moment(values.dateOfBirth).format("YYYY"),
+          ancestry: "muggleborn",
+          eyeColour: values.eyeColour,
+          hairColour: values.hairColour,
+          wand: { wood: "vine", core: "dragon heartstring", length: "" },
+          patronus: "otter",
+          hogwartsStudent: values.position === "student",
+          hogwartsStaff: values.position === "staff",
+          actor: "Emma Watson",
+          alive: true,
+          image: "http://hp-api.herokuapp.com/images/hermione.jpeg",
+        };
+        const response = await createCharacter(character);
+        const created = response.data;
+        console.log({ response, created })
+        if (created && created.id) {
+          dispatch(addCharacter(created));
+          formik.resetForm();
+          onClose();
+        }
+      } catch (error) {
+        console.log({ error });
+      }
     },
   });
 
   const handleChangeFile = (e) => {
     const file = e.target.files[0];
-    console.log({ file })
-    if(!file) return;
-    const name = file.name;
-    const size = file.size;
-    formik.setFieldValue("photo_name", name);
-    formik.setFieldValue("photo_size", size);
-    formik.setFieldValue("photo_file", file);
+    formik.setFieldValue("photo", {
+      name: file.name,
+      size: file.size,
+      file: file,
+    });
   };
-
-  console.log(formik);
 
   return (
     <Modal open={open} onClose={onClose} title="Agregar un personaje">
@@ -113,12 +147,12 @@ export const AddCharacterModal = ({ open = false, onClose }) => {
         <FormLabel>Color de ojos</FormLabel>
         <TextField
           className="text-field-modal"
-          name="eyeColor"
+          name="eyeColour"
           variant="filled"
           onChange={formik.handleChange}
-          value={formik.values.eyeColor}
-          error={formik.errors.eyeColor && formik.touched.eyeColor}
-          helperText={formik.errors.eyeColor}
+          value={formik.values.eyeColour}
+          error={formik.errors.eyeColour && formik.touched.eyeColour}
+          helperText={formik.errors.eyeColour}
         />
       </FormControl>
 
@@ -126,12 +160,12 @@ export const AddCharacterModal = ({ open = false, onClose }) => {
         <FormLabel>Color de pelo</FormLabel>
         <TextField
           className="text-field-modal"
-          name="hairColor"
+          name="hairColour"
           variant="filled"
           onChange={formik.handleChange}
-          value={formik.values.hairColor}
-          error={formik.errors.hairColor && formik.touched.hairColor}
-          helperText={formik.errors.hairColor}
+          value={formik.values.hairColour}
+          error={formik.errors.hairColour && formik.touched.hairColour}
+          helperText={formik.errors.hairColour}
         />
       </FormControl>
 
@@ -139,8 +173,8 @@ export const AddCharacterModal = ({ open = false, onClose }) => {
         <FormLabel id="demo-form-control-label-placement">GÉNERO</FormLabel>
         <RadioGroup
           row
-          name="genre"
-          value={formik.values.genre}
+          name="gender"
+          value={formik.values.gender}
           onChange={formik.handleChange}
           className="radio-row"
         >
@@ -148,13 +182,13 @@ export const AddCharacterModal = ({ open = false, onClose }) => {
             control={<Radio />}
             label="Mujer"
             labelPlacement="end"
-            value="M"
+            value="female"
           />
           <FormControlLabel
             control={<Radio />}
             label="Hombre"
             labelPlacement="end"
-            value="H"
+            value="male"
           />
         </RadioGroup>
       </FormControl>
@@ -187,16 +221,19 @@ export const AddCharacterModal = ({ open = false, onClose }) => {
         <FormLabel>Fotografía</FormLabel>
         <input
           type="file"
-          id="photo_file"
-          name="photo_file"
+          accept="image/*"
+          id="photo"
+          name="photo"
           className="photo-input"
+          ref={fileRef}
           onChange={handleChangeFile}
         />
+        <img ref={imageRef} alt="Character photo" className="character-photo" />
         <label htmlFor="photo_file" className="form-file-error">
-          {formik.errors.photo_name}
+          {formik.errors.photo ? formik.errors.photo.name : ""}
         </label>
         <label htmlFor="photo_file" className="form-file-error">
-          {formik.errors.photo_size}
+          {formik.errors.photo ? formik.errors.photo.size : ""}
         </label>
       </FormControl>
 

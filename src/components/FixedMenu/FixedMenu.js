@@ -3,14 +3,15 @@ import "./FixedMenu.scss";
 import { FixedButton } from "../FixedButton/FixedButton";
 import { Icon } from "../Icon/Icon";
 import { FavoriteItem } from "../FavoriteItem/FavoriteItem";
+import { useDispatch, useSelector } from "react-redux";
+import { toggleFavorite } from "../../providers/store";
 
-const FixedMenu = ({
-  onClickAdd,
-  favorites = [],
-  onDeleteFavorite,
-}) => {
+const FixedMenu = ({ onClickAdd }) => {
   const [openFavorites, setOpenFavorites] = useState(false);
   const toggleFavorites = () => setOpenFavorites(!openFavorites);
+  const favorites = useSelector((state) => state.root.favorites);
+  const dispatch = useDispatch();
+  const deleteFavorite = (id) => dispatch(toggleFavorite({ id }));
 
   return (
     <div className="fixed-menu">
@@ -27,8 +28,9 @@ const FixedMenu = ({
       <div className={`favorite-list ${openFavorites ? "open" : ""}`}>
         {favorites.map((fv, index) => (
           <FavoriteItem
+            key={fv.id}
             image={fv.image}
-            onDelete={() => onDeleteFavorite(index)}
+            onDelete={() => deleteFavorite(fv.id)}
             name={fv.name}
           />
         ))}

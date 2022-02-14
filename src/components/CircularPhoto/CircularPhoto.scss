@@ -9,6 +9,12 @@
     width: 8rem;
     height: 8rem;
   }
+  &.small {
+    @include xs {
+      width: 2rem;
+      height: 2rem;
+    }
+  }
   border-radius: 50%;
   background-position: 50% 20%;
   background-size: cover;

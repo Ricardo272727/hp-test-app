@@ -10,6 +10,7 @@ import "./Card.scss";
 export const getHouseClass = (house = "Gryffindor") => house.toLowerCase();
 
 export const Card = ({
+  id = 0,
   name = "",
   dateOfBirth = "",
   gender = "",
@@ -21,6 +22,7 @@ export const Card = ({
   hogwartsStudent = false,
   house = "Gryffindor",
   onClickFavorite = () => {},
+  isFavorite = false
 }) => {
   return (
     <div className="card-container">
@@ -31,7 +33,7 @@ export const Card = ({
         <div className="info-container">
           <div className="header-info">
             <CardHeaderStatus alive={alive} hogwartsStudent={hogwartsStudent} />
-            <FavoriteButton onClick={onClickFavorite} />
+            <FavoriteButton selected={isFavorite} onClick={() => onClickFavorite(id)} />
           </div>
           <div className="name-container">
             <CardTitle>{name}</CardTitle>

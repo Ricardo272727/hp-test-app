@@ -1,6 +1,26 @@
-.favorite-item{
+@import "../../scss/colors.scss";
+
+.favorite-item {
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background: $purple-high;
+  border-bottom: 1px solid #403b6d;
+  margin-bottom: 0.5rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  .name {
+    color: white;
+  }
+  .delete-btn {
+    background-image: url(assets/Trash.png);
+    background-size: cover;
+    width: 2rem;
+    height: 2rem;
+    background-color: transparent;
+    background-position: center center;
+    background-repeat: no-repeat;
+    padding: 0;
+  }
 }
