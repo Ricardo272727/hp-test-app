@@ -11,18 +11,25 @@
     "start:dev": "webpack-dev-server --mode development --progress",
     "start:dev:network": "webpack-dev-server --mode development --progress --host 0.0.0.0",
     "build": "webpack --config webpack.config.js --mode production",
-    "test:server": "json-server --watch db.js"
+    "test:server": "json-server --watch db.js",
+    "test:run": "jest",
+    "test:watch": "jest --watch"
   },
   "devDependencies": {
     "@babel/core": "^7.17.2",
     "@babel/preset-env": "^7.16.11",
     "@babel/preset-react": "^7.16.7",
+    "@testing-library/react": "^12.1.2",
+    "@testing-library/user-event": "^13.5.0",
+    "babel-jest": "^27.5.1",
     "babel-loader": "^8.2.3",
     "copy-webpack-plugin": "^10.2.4",
     "css-loader": "^6.6.0",
     "electron": "^16.0.7",
+    "identity-obj-proxy": "^3.0.0",
     "mini-css-extract-plugin": "^2.5.3",
     "node-sass": "^7.0.1",
+    "react-hooks-testing-library": "^0.6.0",
     "react-is": "^17.0.2",
     "sass-loader": "^12.4.0",
     "webpack": "^5.68.0",
@@ -39,7 +46,7 @@
     "axios": "^0.24.0",
     "formik": "^2.2.9",
     "html-webpack-plugin": "^5.3.2",
-    "jest": "^27.4.7",
+    "jest": "^27.5.1",
     "json-server": "^0.17.0",
     "moment": "^2.29.1",
     "prettier": "^2.5.1",
@@ -47,10 +54,25 @@
     "react-dom": "^17.0.2",
     "react-redux": "^7.2.6",
     "react-router-dom": "^5.2.0",
+    "react-test-renderer": "^17.0.2",
+    "redux-mock-store": "^1.5.4",
+    "regenerator-runtime": "^0.13.9",
     "socket.io-client": "^4.4.0",
     "style-loader": "^3.2.1",
     "styled-components": "^5.3.3",
     "webpack-dev-server": "^4.2.1",
     "yup": "^0.32.9"
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
+      "^@root(.*)$": "<rootDir>/src$1",
+      "^components(.*)$": "<rootDir>/src/components$1",
+      "^providers(.*)$": "<rootDir>/src/providers$1",
+      "^requests(.*)$": "<rootDir>/src/requests$1",
+      "^views(.*)$": "<rootDir>/src/views$1",
+      "^hooks(.*)$": "<rootDir>/src/hooks$1",
+      "\\.(css|less|scss)$": "identity-obj-proxy"
+    }
   }
 }
