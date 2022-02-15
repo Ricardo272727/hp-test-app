@@ -1,6 +1,15 @@
 import { configureStore, createSlice } from "@reduxjs/toolkit";
 import { filterTypes } from "providers/filterTypes";
 
+export const initialState = {
+  characters: [],
+  students: [],
+  staff: [],
+  favorites: [],
+  filter: filterTypes.students,
+  displayedElements: [],
+};
+
 export const parseCharacterFromApi = (character) => ({
   ...character,
   isFavorite: false,
@@ -8,14 +17,7 @@ export const parseCharacterFromApi = (character) => ({
 
 export const rootSlice = createSlice({
   name: "root",
-  initialState: {
-    characters: [],
-    students: [],
-    staff: [],
-    favorites: [],
-    filter: filterTypes.students,
-    displayedElements: [],
-  },
+  initialState, 
   reducers: {
     setCharacters: (state, action) => {
       state.characters = action.payload.map(parseCharacterFromApi);

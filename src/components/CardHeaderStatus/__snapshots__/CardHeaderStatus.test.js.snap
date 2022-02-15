@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`check card header status display FINADO / ESTUDIANTE 1`] = `
+<span
+  className="card-header-status"
+  data-testid="card-header-status"
+>
+  FINADO
+   / 
+  ESTUDIANTE
+</span>
+`;
+
+exports[`check card header status display VIVO / STAFF  1`] = `
+<span
+  className="card-header-status"
+  data-testid="card-header-status"
+>
+  VIVO
+   / 
+  STAFF
+</span>
+`;

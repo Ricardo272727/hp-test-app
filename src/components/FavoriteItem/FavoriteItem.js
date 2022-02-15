@@ -8,7 +8,12 @@ export const FavoriteItem = ({ onDelete, name, image }) => {
     <li className="favorite-item">
       <CircularPhoto src={image} className="small" />
       <span className="name">{name}</span>
-      <Button onClick={onDelete} className="delete-btn"></Button>
+      <Button
+        id={`delete-btn-${name}`}
+        title="delete-favorite-item"
+        onClick={onDelete}
+        className="delete-btn"
+      ></Button>
     </li>
   );
 };

@@ -5,7 +5,7 @@ export const CardHeaderStatus = ({
   alive = false,
   hogwartsStudent = false,
 }) => (
-  <span className="card-header-status">
+  <span className="card-header-status" data-testid="card-header-status">
     {alive ? "VIVO" : "FINADO"} / {hogwartsStudent ? "ESTUDIANTE" : "STAFF"}
   </span>
 );

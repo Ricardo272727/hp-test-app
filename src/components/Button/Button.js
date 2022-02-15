@@ -1,9 +1,14 @@
 import React from "react";
 import "./Button.scss";
 
-export const Button = ({ className, onClick, children }) => {
+export const Button = ({ id, title, className, onClick, children }) => {
   return (
-    <button className={`btn ${className}`} onClick={onClick}>
+    <button
+      id={id}
+      className={`btn ${className}`}
+      title={title}
+      onClick={onClick}
+    >
       {children}
     </button>
   );

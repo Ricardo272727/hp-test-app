@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`toggle selected class for favorite button 1`] = `
+<button
+  className="favorite-button selected"
+  onClick={[MockFunction]}
+/>
+`;
+
+exports[`toggle selected class for favorite button 2`] = `
+<button
+  className="favorite-button selected"
+  onClick={[MockFunction]}
+/>
+`;

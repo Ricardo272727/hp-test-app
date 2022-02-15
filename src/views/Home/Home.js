@@ -4,39 +4,17 @@ import { Card } from "components/Card/Card";
 import { Button } from "components/Button/Button";
 import FixedMenu from "../../components/FixedMenu/FixedMenu";
 import { AddCharacterModal } from "../../components/AddCharacterModal";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  toggleFavorite,
-  setCharacters,
-  toggleDisplayFilter,
-} from "../../providers/store";
-import { filterTypes } from "../../providers/filterTypes";
-import { findStaff, findAllCharacters } from "../../requests";
-import _ from "lodash";
+import { useHome } from "../../hooks/useHome";
 
 export const Home = (props) => {
-  const [openAddModal, setOpenAddModal] = useState(false);
-  const toggleClose = () => setOpenAddModal(!openAddModal);
-  const students = useSelector((state) => state.root.students);
-  const staff = useSelector((state) => state.root.staff);
-  const displayedElements = useSelector(
-    (state) => state.root.displayedElements
-  );
-  const dispatch = useDispatch();
-  const showStudents = () =>
-    dispatch(toggleDisplayFilter(filterTypes.students));
-  const showStaff = () => dispatch(toggleDisplayFilter(filterTypes.staff));
-  const onClickFavorite = (id) => dispatch(toggleFavorite({ id }));
-
-  useEffect(() => {
-    findAllCharacters()
-      .then((response) => {
-        const data = _.get(response, "data", []);
-        dispatch(setCharacters(data));
-        showStudents();
-      })
-      .catch((error) => console.log({ error }));
-  }, []);
+  const {
+    openAddModal,
+    toggleClose,
+    displayedElements,
+    showStudents,
+    showStaff,
+    onClickFavorite,
+  } = useHome();
 
   return (
     <main className="home-app">
