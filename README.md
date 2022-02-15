@@ -19,6 +19,9 @@
   };
   ```
 
+# Run json-server
+- Run `yarn test:server` to run json server
+
 # Run project
 
 - After setup and check enviroment variables simply run `yarn start:dev` for compile and open a new tab with the project (for development) or `yarn build` to compile project and deploy
