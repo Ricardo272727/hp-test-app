@@ -3,7 +3,7 @@ module.exports = {
   lang: 'es',
 	prefix: '/',
 	port: 5009,
-  api: 'http://localhost:3000',
+  api: '/api',
   localStoragePrefix: 'harry-potter-app-',
   mode: 'development',
   assetsPrefix: 'assets'
