@@ -7,7 +7,7 @@
   "private": true,
   "scripts": {
     "preinstall": "yarn setup:unix",
-    "setup:unix": "cp env.example.js env.js && yarn install",
+    "setup:unix": "cp env.example.js env.js",
     "setup:windows": "copy env.example.js env.js && yarn",
     "start:dev": "webpack-dev-server --mode development --progress",
     "start:dev:network": "webpack-dev-server --mode development --progress --host 0.0.0.0",
