@@ -6,6 +6,7 @@
   "license": "UNLICENSED",
   "private": true,
   "scripts": {
+    "preinstall": "yarn setup:unix",
     "setup:unix": "cp env.example.js env.js && yarn",
     "setup:windows": "copy env.example.js env.js && yarn",
     "start:dev": "webpack-dev-server --mode development --progress",
