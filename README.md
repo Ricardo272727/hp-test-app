@@ -23,12 +23,34 @@
 
 - After setup and check enviroment variables simply run `yarn start:dev` for compile and open a new tab with the project (for development) or `yarn build` to compile project and deploy
 
+# Run tests
+
+- Run `yarn test:run` to run tests or `yarn test:watch` to run in watch mode
+
+# What was my favorite part of this project?
+
+- my favorite part was the redux implementation and the test cases
+
+# Improves
+
+- write test for all components
+- split code into smaller files
+
+# Pain points
+
+- a pain point was the new redux toolkit version, it changes to slice concept and I resolve this with a short lecture on react-redux documentation 
+
+• Descríbenos un pain point o bug con el que te hayas encontrado y como lo
+solucionaste
+
 # For curious developers:
+
 ## Compile tools
 
 - Check webpack.config.js file, this file setup the webpack tool for development and production enviroments
 
 ## Folder structure
+
 - components: for each component there is a folder with a index.js (you need this to code autocomplete and other extentions)
 - assets: folder of images, sounds and icons
 - data: folder to save raw data
@@ -47,5 +69,3 @@
     └── views
         └── Root
   ```
-
-

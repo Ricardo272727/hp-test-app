@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import "./Home.scss";
 import { Card } from "components/Card/Card";
 import { Button } from "components/Button/Button";
-import FixedMenu from "../../components/FixedMenu/FixedMenu";
-import { AddCharacterModal } from "../../components/AddCharacterModal";
-import { useHome } from "../../hooks/useHome";
+import FixedMenu from "components/FixedMenu/FixedMenu";
+import { AddCharacterModal } from "components/AddCharacterModal";
+import { useHome } from "hooks/useHome";
 
 export const Home = (props) => {
   const {
