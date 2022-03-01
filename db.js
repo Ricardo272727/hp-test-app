@@ -1,5 +1,7 @@
 const characters = require("./src/data/hp-characters.json");
-const data = {
+
+const dataBuilder = () => ({
   character: characters.map((s, index) => ({ id: index, ...s })),
-};
-module.exports = data;
+});
+
+module.exports = dataBuilder;
