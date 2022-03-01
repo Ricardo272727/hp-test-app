@@ -4,6 +4,7 @@ import {
   toggleFavorite,
   setCharacters,
   toggleDisplayFilter,
+  selectAliveCharacters 
 } from "providers/store";
 import { filterTypes } from "providers/filterTypes";
 import { findStaff, findAllCharacters } from "requests";
@@ -22,6 +23,7 @@ export const useHome = (props) => {
     dispatch(toggleDisplayFilter(filterTypes.students));
   const showStaff = () => dispatch(toggleDisplayFilter(filterTypes.staff));
   const onClickFavorite = (id) => dispatch(toggleFavorite({ id }));
+  const showAliveCharacters = () => dispatch(selectAliveCharacters());
 
   useEffect(() => {
     findAllCharacters()
@@ -40,5 +42,6 @@ export const useHome = (props) => {
     showStudents,
     showStaff,
     onClickFavorite,
+    showAliveCharacters,
   };
 };

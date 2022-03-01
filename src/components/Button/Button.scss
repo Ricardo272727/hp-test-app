@@ -23,10 +23,13 @@
 
   &.filter-btn {
     @include xs {
-      width: 50%;
+      width: 25%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      flex-wrap: nowrap;
     }
     @include md {
-      width: 40%;
+      width: 30%;
     }
   }
 }

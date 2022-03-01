@@ -29,29 +29,18 @@
   }
 
   .filters-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
     @include xs {
       max-width: 100%;
       padding-left: 1rem;
       padding-right: 1rem;
     }
+
     @include md {
-      max-width: 60%;
-    }
-    .filter-btn:first-child {
-      @include xs {
-        margin-right: 0.5rem;
-      }
-      @include md {
-        margin-right: 3rem;
-      }
-    }
-    .filter-btn:nth-child(2n) {
-      @include xs {
-        margin-left: 0.5rem;
-      }
-      @include md {
-        margin-left: 3rem;
-      }
+      max-width: 70%;
     }
   }
 

@@ -17,7 +17,7 @@ export const parseCharacterFromApi = (character) => ({
 
 export const rootSlice = createSlice({
   name: "root",
-  initialState, 
+  initialState,
   reducers: {
     setCharacters: (state, action) => {
       state.characters = action.payload.map(parseCharacterFromApi);
@@ -77,6 +77,11 @@ export const rootSlice = createSlice({
     updateFavoriteList: (state, action) => {
       state.favorites = state.characters.filter((ch) => ch.isFavorite);
     },
+    selectAliveCharacters: (state, action) => {
+      state.displayedElements = state.characters.filter(
+        (character) => character.alive
+      );
+    },
   },
 });
 
@@ -85,6 +90,7 @@ export const {
   toggleFavorite,
   addCharacter,
   toggleDisplayFilter,
+  selectAliveCharacters,
 } = rootSlice.actions;
 
 export const store = configureStore({

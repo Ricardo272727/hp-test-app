@@ -5,11 +5,11 @@ import {
   setCharacters,
   toggleFavorite,
   toggleDisplayFilter,
+  selectAliveCharacters,
 } from "./store";
 import { filterTypes } from "./filterTypes";
 import students from "../data/hp-students.json";
 import staff from "../data/hp-staff.json";
-import { initialValues } from "hooks/useCharacterForm";
 
 const characters = [...students, ...staff].map((ch, index) => ({
   ...ch,
@@ -61,4 +61,11 @@ test("Add new character", () => {
   result = rootSlice.reducer(result, addCharacter(character));
   expect(result.staff).toHaveLength(staff.length + 1);
   expect(result.characters).toHaveLength(staff.length + students.length + 1);
+});
+
+test("Select alive characters", () => {
+  const aliveCharactersCount = characters.filter((ch) => ch.alive).length;
+  result = rootSlice.reducer(result, setCharacters(characters));
+  result = rootSlice.reducer(result, selectAliveCharacters());
+  expect(result.displayedElements).toHaveLength(aliveCharactersCount);
 });

@@ -14,6 +14,7 @@ export const Home = (props) => {
     showStudents,
     showStaff,
     onClickFavorite,
+    showAliveCharacters,
   } = useHome();
 
   return (
@@ -28,12 +29,15 @@ export const Home = (props) => {
       <div className="df center-x">
         <h1 className="select-filter-label">Selecciona tu filtro</h1>
       </div>
-      <div className="df center-x pt-2 filters-container">
+      <div className="df pt-2 filters-container">
         <Button className="filter-btn" onClick={showStudents}>
           Estudiantes
         </Button>
         <Button className="filter-btn" onClick={showStaff}>
           Staff
+        </Button>
+        <Button className="filter-btn" onClick={showAliveCharacters}>
+          Vivos
         </Button>
       </div>
       <div className="items-container">
